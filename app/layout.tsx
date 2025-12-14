@@ -1,52 +1,55 @@
-import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter, JetBrains_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
 
-// Fonts
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
-
-// Metadata
-const title = "Video embedding with next-video";
-const description =
-  "Next-video solves the hard problems with embedding, storing, streaming, and customizing video in your Next.js app.";
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" })
 
 export const metadata: Metadata = {
-  metadataBase: process.env.VERCEL_URL
-    ? new URL(`https://${process.env.VERCEL_URL}`)
-    : new URL(`http://localhost:${process.env.PORT || 3000}`),
-  title,
-  description,
+  title: "Séverino El - Écosystème Musical Complet",
+  description:
+    "Plateforme musicale complète : école de musique en ligne, réseau social musical, pédale d'effets virtuelle, marketplace et outils collaboratifs.",
+  keywords: [
+    "musique",
+    "école de musique",
+    "réseau social musical",
+    "effets guitare",
+    "cours de musique",
+    "collaboration musicale",
+  ],
+  authors: [{ name: "Séverino El" }],
+  creator: "Séverino El",
   openGraph: {
-    title,
-    description,
-    url: "/",
-    locale: "en-US",
+    title: "Séverino El - Écosystème Musical Complet",
+    description:
+      "La première plateforme au monde alliant école de musique intelligente, réseau social musical et outils professionnels.",
     type: "website",
   },
-  twitter: {
-    title,
-    description,
-    site: "@muxhq",
-    card: "summary_large_image",
-  },
-};
+    generator: 'v0.app'
+}
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f97316" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${dmSans.variable} ${jetBrainsMono.variable}`}>{children}</body>
+    <html lang="fr" suppressHydrationWarning>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
-  );
+  )
 }
